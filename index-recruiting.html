@@ -377,11 +377,17 @@
   /* ── CTA mid section ── */
   .mid-cta { padding:60px 0; background:var(--bg); border-top:1px solid var(--border); text-align:center; }
 
+  /* Mobile cases fallback */
+  .cases-mobile { display:none; margin-top:48px; padding:0 24px; }
+  .cases-mobile-grid { display:grid; grid-template-columns:1fr; gap:16px; max-width:var(--max-w-wide); margin:0 auto; }
+  .cases-mobile .c-card { width:100%; flex-shrink:unset; }
+
   @media(max-width:768px){
     .hero{padding:20px 0 60px;}
     .pillars-grid{grid-template-columns:1fr 1fr;}
     .pl{width:32px;}
-    .c-card{width:280px;}
+    .marquee-wrap{display:none;}
+    .cases-mobile{display:block;}
   }
   @media(max-width:480px){ .pillars-grid{grid-template-columns:1fr;} }
 </style>
@@ -568,9 +574,16 @@
       <div class="c-card"><div class="c-name">Sidla & Schönberger</div><div class="c-ind">Bau / Spezialtiefbau</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>51 Bewerbungen in 21 Tagen</span></div></div><div class="c-ctx">Facharbeiter mit Reisebereitschaft im Süddeutschen Raum gesucht.</div></div>
     </div>
   </div>
+  <!-- Mobile fallback: static 4-card grid -->
+  <div class="cases-mobile">
+    <div class="cases-mobile-grid">
+      <div class="c-card"><div class="c-name">Sirio Pharma</div><div class="c-ind">Pharma / Produktion</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>19 Einstellungen in 8 Monaten</span></div><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>Über 290 Bewerbungen</span></div></div><div class="c-ctx">Schwach besiedelte Region – zuvor mit vielen Maßnahmen erfolglos.</div></div>
+      <div class="c-card"><div class="c-name">G. Staehle GmbH</div><div class="c-ind">Logistik / Maschinenbau</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>6+ Logistiker & 3+ Maschineneinrichter in 8 Wochen</span></div></div><div class="c-ctx">Vorherige Agentur lieferte Bewerbungen ohne gewünschte Qualität.</div></div>
+      <div class="c-card"><div class="c-name">Fluckinger Transport</div><div class="c-ind">Transport / Logistik</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>15+ Einstellungen · 12 Mio.+ Impressionen</span></div></div><div class="c-ctx">Starker Wachstumskurs – Auftragsbücher gefüllt.</div></div>
+      <div class="c-card"><div class="c-name">elite Jet Service</div><div class="c-ind">Luftfahrt / Azubis</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>3 Azubis in 30 Tagen eingestellt</span></div></div><div class="c-ctx">Fluggerätemechaniker – unbekannter Beruf, kreativer Recruiting-Ansatz.</div></div>
+    </div>
+  </div>
 </section>
-
-<!-- MID CTA -->
 <section class="mid-cta reveal">
   <div class="container text-center">
     <a href="#bewerbung" class="cta-main">Jetzt Erstgespräch vereinbaren</a>
