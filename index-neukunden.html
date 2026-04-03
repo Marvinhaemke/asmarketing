@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS Marketing – Planbar Neukunden gewinnen.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+<style>
+  :root {
+    --red: #E52428;
+    --red-dark: #c91e22;
+    --red-glow: rgba(229,36,40,0.18);
+    --black: #000000;
+    --white: #ffffff;
+    --bg: #fafafa;
+    --card: #ffffff;
+    --card-alt: #f5f5f5;
+    --border: rgba(0,0,0,0.07);
+    --border-strong: rgba(0,0,0,0.12);
+    --text: #1a1a1a;
+    --text-mid: #555;
+    --text-light: #888;
+    --font: 'Poppins', sans-serif;
+    --serif: 'Playfair Display', serif;
+    --max-w: 780px;
+    --max-w-wide: 1060px;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+  .container { max-width:var(--max-w); margin:0 auto; padding:0 24px; }
+  .container-wide { max-width:var(--max-w-wide); margin:0 auto; padding:0 24px; }
+  .text-center { text-align:center; }
+
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ── Logo ── */
+  .logo-img { height:30px; width:auto; margin-bottom: 20px;}
+
+  /* ── Hero ── */
+  .hero { margin-top: 0px; padding:20px 0 80px; text-align:center; position:relative; background:var(--white); overflow:hidden; }
+  .hero::before {
+    content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:900px; height:900px;
+    background:radial-gradient(circle, rgba(229,36,40,0.04) 0%, transparent 65%);
+    pointer-events:none;
+  }
+  h1 { font-weight:900; font-size:clamp(30px,5vw,52px); line-height:1.08; letter-spacing:-0.03em; margin-bottom:48px; position:relative; z-index:1; }
+  h1 em { font-family:var(--serif); color:var(--red); font-style:italic; }
+
+  /* VSL */
+  .vsl-wrap {
+    max-width:720px; margin:0 auto 40px; position:relative; z-index:1;
+    border-radius:14px; overflow:hidden; aspect-ratio:16/9;
+    background:#111; box-shadow:0 8px 60px rgba(0,0,0,0.1), 0 0 0 1px var(--border);
+  }
+  .vsl-wrap iframe { width:100%; height:100%; border:none; }
+
+  .qualifier { display:block; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-light); margin-bottom:24px; position:relative; z-index:1; }
+  .cta-main {
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--red); color:#fff; font-family:var(--font); font-weight:700; font-size:16px;
+    padding:18px 44px; border-radius:8px; text-decoration:none; border:none; cursor:pointer;
+    box-shadow:0 4px 30px var(--red-glow); transition:all 0.3s; position:relative; z-index:1;
+  }
+  .cta-main:hover { background:var(--red-dark); transform:translateY(-2px); }
+  .scarcity { display:block; margin-top:16px; font-size:13px; color:var(--text-light); font-weight:500; position:relative; z-index:1; }
+
+  /* ── Sections ── */
+  .s-label { font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:12px; }
+  .s-heading { font-weight:900; font-size:clamp(24px,3.5vw,38px); line-height:1.15; margin-bottom:20px; color:var(--text); }
+  .s-sub { font-size:17px; color:var(--text-mid); line-height:1.7; margin-bottom:40px; }
+
+  /* ── Trust Bar ── */
+  .trust-bar { padding:48px 0; background:var(--white); border-top:1px solid var(--border); }
+  .trust-logos { display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; opacity:0.55; }
+  .trust-logos span { font-weight:700; font-size:14px; color:var(--text); white-space:nowrap; }
+  .trust-intro { font-size:13px; color:var(--text-light); text-transform:uppercase; letter-spacing:1.5px; font-weight:700; margin-bottom:20px; }
+
+  /* ── Problem ── */
+  .problem { padding:100px 0; background:var(--white); border-top:1px solid var(--border); }
+  .pain-list { list-style:none; }
+  .pain-list li { padding:16px 0; border-bottom:1px solid var(--border); font-size:16px; color:var(--text-mid); display:flex; align-items:flex-start; gap:16px; }
+  .pain-list li:last-child { border-bottom:none; }
+  .pain-list .b { flex-shrink:0; color:var(--red); margin-top:2px; }
+  .pain-list .b i { width:20px; height:20px; }
+  .pain-list strong { color:var(--text); }
+  .punchline {
+    margin-top:40px; padding:28px 32px; background:rgba(229,36,40,0.04);
+    border-left:3px solid var(--red); border-radius:0 8px 8px 0;
+    font-size:17px; font-weight:600; line-height:1.6; color:var(--text);
+  }
+
+  /* ── Consequences ── */
+  .consequences { padding:100px 0; background:var(--bg); border-top:1px solid var(--border); }
+  .conseq-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:48px; }
+  @media(max-width:700px){ .conseq-grid{grid-template-columns:1fr;} }
+  .conseq-card {
+    background:var(--card); border:1px solid var(--border); border-radius:12px; padding:28px;
+    transition:border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .conseq-card:hover { border-color:rgba(229,36,40,0.15); transform:translateY(-3px); box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+  .conseq-icon { width:40px; height:40px; border-radius:10px; background:rgba(229,36,40,0.06); display:flex; align-items:center; justify-content:center; color:var(--red); margin-bottom:16px; }
+  .conseq-icon i { width:20px; height:20px; }
+  .conseq-card h3 { font-weight:700; font-size:16px; margin-bottom:8px; color:var(--text); }
+  .conseq-card p { font-size:14px; color:var(--text-mid); line-height:1.65; }
+
+  /* ── Pillars ── */
+  .pillars { padding:100px 0; background:var(--white); border-top:1px solid var(--border); }
+  .pillars-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:48px; }
+  .pillar {
+    background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px 24px; text-align:center;
+    transition:border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .pillar:hover { border-color:rgba(229,36,40,0.2); transform:translateY(-4px); box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+  .pillar-icon { margin-bottom:14px; color:var(--red); display:flex; justify-content:center; }
+  .pillar-icon i { width:32px; height:32px; stroke-width:1.8; }
+  .pillar-title { font-weight:700; font-size:15px; color:var(--text); }
+
+  /* ── Testimonials ── */
+  .testi { padding:100px 0; background:var(--bg); border-top:1px solid var(--border); }
+  .testi-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:48px; }
+  @media(max-width:700px){ .testi-grid{grid-template-columns:1fr;} }
+  .t-card { background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:border-color 0.3s, box-shadow 0.3s; }
+  .t-card:hover { border-color:rgba(229,36,40,0.15); box-shadow:0 8px 40px rgba(0,0,0,0.06); }
+  .t-video { aspect-ratio:16/9; background:#000; position:relative; }
+  .t-video iframe { width:100%; height:100%; border:none; }
+  .t-body { padding:24px; }
+  .t-tag {
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(229,36,40,0.06); color:var(--red); font-weight:700; font-size:13px;
+    padding:6px 14px; border-radius:6px; margin-bottom:14px;
+  }
+  .t-tag i { width:14px; height:14px; }
+  .t-quote { font-size:15px; color:var(--text-mid); line-height:1.65; font-style:italic; margin-bottom:20px; }
+  .t-author { display:flex; align-items:center; gap:12px; }
+  .t-avatar { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--border); }
+  .t-name { font-weight:700; font-size:14px; color:var(--text); }
+  .t-role { font-size:12px; color:var(--text-light); }
+
+  /* ── Cases Marquee ── */
+  .cases { padding:100px 0; background:var(--white); border-top:1px solid var(--border); overflow:hidden; }
+  .cases-header { max-width:var(--max-w-wide); margin:0 auto; padding:0 24px; }
+  .marquee-wrap { position:relative; margin-top:48px; }
+  .marquee-wrap::before, .marquee-wrap::after {
+    content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; pointer-events:none;
+  }
+  .marquee-wrap::before { left:0; background:linear-gradient(to right, var(--white), transparent); }
+  .marquee-wrap::after { right:0; background:linear-gradient(to left, var(--white), transparent); }
+  .marquee-row { display:flex; gap:20px; width:max-content; padding:0 0 20px; }
+  .marquee-row.scroll-left { animation:scrollLeft 45s linear infinite; }
+  .marquee-row.scroll-right { animation:scrollRight 45s linear infinite; }
+  @keyframes scrollLeft { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  @keyframes scrollRight { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
+  .marquee-row:hover { animation-play-state:paused; }
+  .c-card {
+    flex-shrink:0; width:340px; background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:28px; transition:border-color 0.3s, box-shadow 0.3s;
+  }
+  .c-card:hover { border-color:rgba(229,36,40,0.15); box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+  .c-name { font-weight:800; font-size:18px; margin-bottom:4px; }
+  .c-ind { font-size:12px; color:var(--text-light); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px; }
+  .c-results { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+  .c-res { display:flex; align-items:flex-start; gap:10px; font-size:14px; font-weight:600; color:var(--text); }
+  .c-chk { flex-shrink:0; width:20px; height:20px; border-radius:5px; background:rgba(229,36,40,0.08); display:flex; align-items:center; justify-content:center; margin-top:1px; color:var(--red); }
+  .c-chk i { width:12px; height:12px; }
+  .c-ctx { font-size:13px; color:var(--text-light); line-height:1.5; border-top:1px solid var(--border); padding-top:14px; }
+
+  /* ── Process ── */
+  .process { padding:100px 0; background:var(--bg); border-top:1px solid var(--border); }
+  .process-timeline { max-width:640px; margin:48px auto 0; position:relative; }
+  .process-timeline::before {
+    content:''; position:absolute; left:24px; top:0; width:2px; height:0;
+    background:linear-gradient(to bottom, var(--red), rgba(229,36,40,0.15));
+    transition:height 1.8s cubic-bezier(0.22,1,0.36,1);
+  }
+  .process-timeline.tl-active::before { height:100%; }
+  .p-step {
+    display:flex; gap:28px; margin-bottom:40px; position:relative;
+    opacity:0; transform:translateY(24px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .p-step.tl-visible { opacity:1; transform:translateY(0); }
+  .p-step:last-child { margin-bottom:0; }
+  .p-num {
+    flex-shrink:0; width:50px; height:50px; border-radius:50%;
+    background:var(--white); border:2px solid var(--border-strong); color:var(--text-light);
+    font-weight:800; font-size:18px; display:flex; align-items:center; justify-content:center;
+    position:relative; z-index:1;
+    transition:border-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+  }
+  .p-step.tl-visible .p-num {
+    border-color:var(--red); color:var(--red);
+    box-shadow:0 0 0 6px rgba(229,36,40,0.08);
+  }
+  .p-content { padding-top:8px; }
+  .p-title { font-weight:700; font-size:17px; color:var(--text); margin-bottom:6px; }
+  .p-desc { font-size:14px; color:var(--text-mid); line-height:1.65; }
+  .p-time {
+    display:inline-flex; align-items:center; gap:6px; margin-top:10px;
+    font-size:12px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.5px;
+  }
+  .p-time i { width:14px; height:14px; }
+
+  /* ── Reviews ── */
+  .reviews { padding:100px 0; background:var(--white); border-top:1px solid var(--border); }
+  .reviews-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:48px; }
+  @media(max-width:700px){ .reviews-grid{grid-template-columns:1fr;} }
+  .r-card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px; padding:28px;
+    transition:border-color 0.3s, box-shadow 0.3s; position:relative;
+  }
+  .r-card:hover { border-color:rgba(229,36,40,0.15); box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+  .r-card::before {
+    content:'\201C'; font-family:var(--serif); font-size:80px; color:var(--red); opacity:0.08;
+    position:absolute; top:8px; left:20px; line-height:1;
+  }
+  .r-stars { display:flex; gap:2px; color:#f5a623; margin-bottom:14px; }
+  .r-stars i, .r-stars svg { width:16px; height:16px; fill:#f5a623; stroke:#f5a623; }
+  .r-text { font-size:14px; color:var(--text-mid); line-height:1.7; font-style:italic; margin-bottom:20px; position:relative; z-index:1; }
+  .r-meta { display:flex; align-items:center; gap:12px; }
+  .r-logo { width:40px; height:40px; border-radius:8px; object-fit:cover; border:1px solid var(--border); background:var(--card-alt); }
+  .r-company { font-weight:700; font-size:14px; color:var(--text); }
+  .r-industry { font-size:12px; color:var(--text-light); }
+
+  /* ── Quote ── */
+  .quote-s { padding:80px 0; background:var(--bg); border-top:1px solid var(--border); }
+  .big-q {
+    font-family:var(--serif); font-style:italic; font-size:clamp(20px,3vw,30px); line-height:1.5;
+    color:var(--text-mid); text-align:center; max-width:700px; margin:0 auto; position:relative;
+  }
+  .big-q::before { content:'\201C'; font-family:var(--serif); font-size:120px; color:var(--red); opacity:0.1; position:absolute; top:-40px; left:-20px; line-height:1; }
+
+  /* ── FAQ ── */
+  .faq { padding:100px 0; background:var(--white); border-top:1px solid var(--border); }
+  .faq-list { max-width:680px; margin:48px auto 0; }
+  .faq-item { border-bottom:1px solid var(--border); }
+  .faq-item:first-child { border-top:1px solid var(--border); }
+  .faq-q {
+    width:100%; background:none; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:22px 0; font-family:var(--font); font-weight:700; font-size:16px;
+    color:var(--text); text-align:left; transition:color 0.3s;
+  }
+  .faq-q:hover { color:var(--red); }
+  .faq-q i { width:20px; height:20px; flex-shrink:0; transition:transform 0.3s; color:var(--text-light); }
+  .faq-q.open i { transform:rotate(45deg); color:var(--red); }
+  .faq-a {
+    max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s ease;
+    font-size:15px; color:var(--text-mid); line-height:1.7;
+  }
+  .faq-a.open { max-height:500px; padding-bottom:22px; }
+
+  /* ── Decide ── */
+  .decide { padding:80px 0; background:var(--bg); border-top:1px solid var(--border); text-align:center; }
+  .decide h2 { font-weight:900; font-size:clamp(26px,4vw,44px); line-height:1.1; margin-bottom:20px; }
+  .decide p { font-size:17px; color:var(--text-mid); max-width:560px; margin:0 auto 40px; line-height:1.65; }
+
+  /* ── Form ── */
+  .form-s { padding:0 0 100px; background:var(--bg); }
+  .form-c { max-width:580px; margin:0 auto; }
+  .progress { display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:36px; }
+  .pc {
+    width:36px; height:36px; border-radius:50%; border:2px solid var(--border-strong);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:13px; color:var(--text-light); transition:all 0.4s; flex-shrink:0;
+  }
+  .pc.active { border-color:var(--red); background:var(--red); color:#fff; box-shadow:0 0 16px var(--red-glow); }
+  .pc.done { border-color:var(--red); background:var(--red); color:#fff; }
+  .pl { width:48px; height:2px; background:var(--border-strong); transition:background 0.4s; }
+  .pl.active { background:var(--red); }
+
+  .fcard { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:44px; box-shadow:0 4px 30px rgba(0,0,0,0.04); }
+  @media(max-width:560px){ .fcard{padding:28px 20px;} }
+
+  .step { display:none; }
+  .step.active { display:block; animation:fadeIn 0.35s ease-out; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+  .st { font-weight:800; font-size:20px; margin-bottom:6px; }
+  .sd { font-size:14px; color:var(--text-light); margin-bottom:28px; }
+
+  .fg { margin-bottom:20px; }
+  .fg label { display:block; font-weight:600; font-size:13px; color:var(--text-mid); margin-bottom:6px; }
+  .fg input, .fg select, .fg textarea {
+    width:100%; background:var(--card-alt); border:1px solid var(--border-strong); border-radius:8px;
+    padding:13px 16px; font-family:var(--font); font-size:15px; color:var(--text); outline:none; transition:border-color 0.3s;
+  }
+  .fg input::placeholder, .fg textarea::placeholder { color:var(--text-light); }
+  .fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(--red); }
+
+  /* intl-tel-input overrides */
+  .iti { width:100%; }
+  .iti .iti__tel-input {
+    width:100%; background:var(--card-alt); border:1px solid var(--border-strong); border-radius:8px;
+    padding:13px 16px 13px 52px; font-family:var(--font); font-size:15px; color:var(--text); outline:none; transition:border-color 0.3s;
+    height:auto;
+  }
+  .iti .iti__tel-input:focus { border-color:var(--red); }
+  .iti .iti__tel-input::placeholder { color:var(--text-light); }
+  .iti--separate-dial-code .iti__selected-country { border-radius:8px 0 0 8px; background:transparent; }
+  .iti__country-container { left:0; }
+  .iti__selected-country-primary { padding:0 8px 0 14px; }
+  .iti__arrow { border-top-color:var(--text-light); }
+  .iti__dropdown-content { font-family:var(--font); border-radius:8px; border:1px solid var(--border-strong); box-shadow:0 8px 30px rgba(0,0,0,0.1); }
+  .iti__search-input { font-family:var(--font); font-size:14px; border-radius:6px; }
+
+  .fr { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:480px){ .fr{grid-template-columns:1fr;} }
+
+  .rg { display:flex; flex-direction:column; gap:10px; }
+  .ro {
+    display:flex; align-items:center; gap:12px; padding:14px 18px;
+    background:var(--card-alt); border:1px solid var(--border-strong); border-radius:10px;
+    cursor:pointer; transition:all 0.3s; font-size:14px; font-weight:500; color:var(--text-mid);
+  }
+  .ro:hover { border-color:rgba(229,36,40,0.3); }
+  .ro.sel { border-color:var(--red); background:rgba(229,36,40,0.04); color:var(--text); }
+  .rd { width:18px; height:18px; border-radius:50%; border:2px solid var(--border-strong); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.3s; }
+  .ro.sel .rd { border-color:var(--red); }
+  .ro.sel .rd::after { content:''; width:8px; height:8px; border-radius:50%; background:var(--red); }
+
+  .fn { display:flex; justify-content:space-between; align-items:center; margin-top:28px; }
+  .bb {
+    background:none; border:1px solid var(--border-strong); color:var(--text-mid);
+    font-family:var(--font); font-weight:600; font-size:14px;
+    padding:12px 24px; border-radius:8px; cursor:pointer; transition:all 0.3s;
+  }
+  .bb:hover { border-color:var(--text); color:var(--text); }
+  .bn {
+    background:var(--red); border:none; color:#fff; font-family:var(--font); font-weight:700; font-size:15px;
+    padding:14px 32px; border-radius:8px; cursor:pointer;
+    box-shadow:0 4px 20px var(--red-glow); transition:all 0.3s;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .bn:hover { background:var(--red-dark); transform:translateY(-1px); }
+
+  .cal-wrap { border-radius:10px; overflow:hidden; min-height:650px; background:#fff; }
+  .cal-wrap iframe { width:100%; min-height:650px; border:none; }
+
+  /* ── BAFA Badge ── */
+  .bafa-banner {
+    padding:48px 0; background:var(--white); border-top:1px solid var(--border);
+  }
+  .bafa-inner {
+    display:flex; align-items:center; gap:28px; max-width:640px; margin:0 auto;
+    background:rgba(229,36,40,0.03); border:1px solid rgba(229,36,40,0.1); border-radius:14px; padding:28px 32px;
+  }
+  .bafa-icon { flex-shrink:0; width:56px; height:56px; border-radius:12px; background:rgba(229,36,40,0.08); display:flex; align-items:center; justify-content:center; color:var(--red); }
+  .bafa-icon i { width:28px; height:28px; }
+  .bafa-text h3 { font-weight:700; font-size:16px; color:var(--text); margin-bottom:4px; }
+  .bafa-text p { font-size:14px; color:var(--text-mid); line-height:1.6; }
+  @media(max-width:600px){ .bafa-inner{flex-direction:column;text-align:center;} }
+
+  /* ── Stats Row ── */
+  .stats { padding:64px 0; background:var(--white); border-top:1px solid var(--border); }
+  .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  @media(max-width:700px){ .stats-grid{grid-template-columns:repeat(2,1fr);} }
+  .stat-item { text-align:center; }
+  .stat-num { font-weight:900; font-size:clamp(28px,4vw,42px); color:var(--red); line-height:1.1; }
+  .stat-label { font-size:13px; color:var(--text-mid); margin-top:6px; font-weight:500; }
+
+  /* ── Footer ── */
+  footer { border-top:1px solid var(--border); padding:40px 0 28px; text-align:center; background:var(--white); }
+  .f-links { display:flex; justify-content:center; gap:24px; margin-bottom:12px; }
+  .f-links a { color:var(--text-light); font-size:13px; text-decoration:none; transition:color 0.2s; }
+  .f-links a:hover { color:var(--text); }
+  .f-copy { font-size:12px; color:var(--text-light); }
+  .f-disc { max-width:600px; margin:16px auto 0; font-size:11px; color:var(--text-light); line-height:1.5; }
+
+  /* ── CTA mid section ── */
+  .mid-cta { padding:60px 0; background:var(--bg); border-top:1px solid var(--border); text-align:center; }
+
+  /* Mobile cases fallback */
+  .cases-mobile { display:none; margin-top:48px; padding:0 24px; }
+  .cases-mobile-grid { display:grid; grid-template-columns:1fr; gap:16px; max-width:var(--max-w-wide); margin:0 auto; }
+  .cases-mobile .c-card { width:100%; flex-shrink:unset; }
+
+  @media(max-width:768px){
+    .hero{padding:20px 0 60px;}
+    .pillars-grid{grid-template-columns:1fr 1fr;}
+    .pl{width:32px;}
+    .marquee-wrap{display:none;}
+    .cases-mobile{display:block;}
+  }
+  @media(max-width:480px){ .pillars-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<!-- HERO + VSL -->
+<section class="hero">
+  <div class="container text-center">
+    <!-- Placeholder Logo (Please update src path locally) -->
+    <img src="assets/images/Logo_ASMarketing_quer (1) (1).png" alt="AS Marketing" class="logo-img" onerror="this.style.display='none'">
+    
+    <h1>Planbar Neukunden gewinnen,<br>ohne auf <em>Empfehlungen</em> zu hoffen.</h1>
+    <div class="vsl-wrap">
+      <!-- Wistia VSL (Update embed code to the new B2B Video) -->
+      <iframe src="https://fast.wistia.net/embed/iframe/nmiss9h4st?seo=true&videoFoam=false" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="qualifier">Für Unternehmen im Mittelstand (B2B & Dienstleistung)</p>
+    <a href="#bewerbung" class="cta-main">Jetzt Potenzial-Analyse sichern</a>
+    <span class="scarcity">100 % kostenlos & unverbindlich · Über 400 Kampagnen Erfahrung</span>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar reveal">
+  <div class="container-wide text-center">
+    <p class="trust-intro">Über 200 Unternehmen vertrauen uns</p>
+    <div class="trust-logos">
+      <span>Sirio Pharma</span>
+      <span>ROMA KG</span>
+      <span>Leonhard Weiss</span>
+      <span>ETO Gruppe</span>
+      <span>Fluckinger</span>
+      <span>Bischof+Klein</span>
+      <span>Zugspitzbahn</span>
+      <span>DAS Private Jets</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem reveal">
+  <div class="container">
+    <p class="s-label">Die bittere Wahrheit</p>
+    <h2 class="s-heading">Die meisten Mittelständler haben kein System für die Neukundengewinnung.</h2>
+    <p class="s-sub">Was passiert, wenn morgen zwei Ihrer größten Kunden abspringen? Oder wenn die Konjunktur dreht und die Auftragsbücher dünner werden? Für die meisten wird es dann still.</p>
+    <ul class="pain-list">
+      <li><span class="b"><i data-lucide="chevron-right"></i></span><span><strong>Empfehlungen sind nicht planbar.</strong> Sie kommen, wann sie wollen. Am Anfang des Monats wissen Sie nie, wie viele Anfragen am Ende rauskommen.</span></li>
+      <li><span class="b"><i data-lucide="chevron-right"></i></span><span><strong>Messen verbrennen Budget.</strong> 10.000 € Investition, zwei Tage am Stand – und am Ende kommen Sie mit einer Handvoll Visitenkarten zurück, von denen die Hälfte nie ans Telefon geht.</span></li>
+      <li><span class="b"><i data-lucide="chevron-right"></i></span><span><strong>Kaltakquise kostet Nerven.</strong> Jemand telefoniert 50 Nummern am Tag ab. Kosten pro Termin: mindestens 500 Euro. Abschlussquote? Fragen Sie lieber nicht.</span></li>
+      <li><span class="b"><i data-lucide="chevron-right"></i></span><span><strong>Veraltete Webseiten.</strong> Ihre Online-Präsenz wurde seit Jahren nicht angefasst und generiert aktiv keine einzigen qualifizierten Leads.</span></li>
+    </ul>
+    <div class="punchline">Das Problem ist nicht, dass diese Methoden nicht ab und zu funktionieren. Das Problem ist, dass sie nicht skalierbar sind. <strong>Das ist kein Geschäftsmodell. Das ist Hoffnung.</strong></div>
+  </div>
+</section>
+
+<!-- CONSEQUENCES -->
+<section class="consequences reveal">
+  <div class="container-wide">
+    <p class="s-label text-center">Die Folgen</p>
+    <h2 class="s-heading text-center">Was passiert, wenn Sie weiterhin auf Zufall setzen?</h2>
+    <div class="conseq-grid">
+      <div class="conseq-card">
+        <div class="conseq-icon"><i data-lucide="alert-triangle"></i></div>
+        <h3>Gefährliche Abhängigkeit</h3>
+        <p>Sie sind abhängig von wenigen großen Stammkunden. Fällt nur einer davon weg, reißt das ein massives Loch in Ihre Jahresplanung, das sich kaum füllen lässt.</p>
+      </div>
+      <div class="conseq-card">
+        <div class="conseq-icon"><i data-lucide="trending-down"></i></div>
+        <h3>Umsatzstagnation</h3>
+        <p>Während die Konkurrenz digital wächst und sich die lukrativsten Marktanteile sichert, treten Sie auf der Stelle und warten darauf, dass das Telefon klingelt.</p>
+      </div>
+      <div class="conseq-card">
+        <div class="conseq-icon"><i data-lucide="wallet"></i></div>
+        <h3>Verschwendetes Budget</h3>
+        <p>Sie geben Unsummen für analoges Marketing, teure Printanzeigen und Messeauftritte aus, ohne jemals genau tracken zu können, was Ihnen ein neuer Lead eigentlich kostet.</p>
+      </div>
+      <div class="conseq-card">
+        <div class="conseq-icon"><i data-lucide="users-x"></i></div>
+        <h3>Preiskampf & Preisdruck</h3>
+        <p>Wer keinen vollen Terminkalender hat, muss jeden Auftrag annehmen. Sie können es sich nicht leisten, schlechte Kunden abzulehnen oder Ihre Preise gesund zu erhöhen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars reveal">
+  <div class="container">
+    <p class="s-label text-center">Unser System</p>
+    <h2 class="s-heading text-center">In 4 Schritten zur planbaren digitalen Neukundengewinnung.</h2>
+    <div class="pillars-grid">
+      <div class="pillar"><div class="pillar-icon"><i data-lucide="target"></i></div><div class="pillar-title">1. Zielgruppen- &<br>Angebotsanalyse</div></div>
+      <div class="pillar"><div class="pillar-icon"><i data-lucide="megaphone"></i></div><div class="pillar-title">2. KI-gestützte<br>Ad-Kampagnen</div></div>
+      <div class="pillar"><div class="pillar-icon"><i data-lucide="filter"></i></div><div class="pillar-title">3. Landingpages &<br>Qualifizierung</div></div>
+      <div class="pillar"><div class="pillar-icon"><i data-lucide="layout-dashboard"></i></div><div class="pillar-title">4. Exklusives<br>Lead-Dashboard</div></div>
+      <div class="pillar"><div class="pillar-icon"><i data-lucide="zap"></i></div><div class="pillar-title">Automatisierte<br>Benachrichtigungen</div></div>
+      <div class="pillar"><div class="pillar-icon"><i data-lucide="line-chart"></i></div><div class="pillar-title">Messbarer<br>ROI 24/7</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BAFA -->
+<section class="bafa-banner reveal">
+  <div class="container">
+    <div class="bafa-inner">
+      <div class="bafa-icon"><i data-lucide="shield-check"></i></div>
+      <div class="bafa-text">
+        <h3>Bis zu 80 % staatlicher Zuschuss möglich</h3>
+        <p>Wir sind als BAFA-Berater offiziell gelistet. Das bedeutet: Unsere strategische Beratung kann für Ihr Unternehmen staatlich gefördert werden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KUNDENSTIMMEN -->
+<section class="testi reveal">
+  <div class="container-wide">
+    <p class="s-label text-center">Kundenstimmen</p>
+    <h2 class="s-heading text-center">Echte Ergebnisse aus dem Mittelstand</h2>
+    <div class="testi-grid">
+      <!-- Holzwarth -->
+      <div class="t-card">
+        <div class="t-video">
+          <iframe src="https://www.youtube.com/embed/s_BYSc26Th8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="t-body">
+          <div class="t-tag"><i data-lucide="check"></i> Hochqualifizierte B2B Anfragen generiert</div>
+          <p class="t-quote">„Die Zusammenarbeit war großartig. Alles lief schnell und unkompliziert ab. Innerhalb von wenigen Tagen kamen die ersten Anfragen rein und wir konnten direkt messbare Resultate verzeichnen."</p>
+          <div class="t-author">
+            <img src="https://onecdn.io/media/20ac85f0-b630-4bc9-b018-569b266073c4/preview" alt="Ulrich Wiedemann" class="t-avatar">
+            <div><div class="t-name">Ulrich Wiedemann</div><div class="t-role">Geschäftsführer · Holzwarth Fenster & Türen</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Sirio Pharma -->
+      <div class="t-card">
+        <div class="t-video">
+          <iframe src="https://www.youtube.com/embed/CalqM3o-2Jo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="t-body">
+          <div class="t-tag"><i data-lucide="check"></i> Planbares Wachstum trotz schwieriger Region</div>
+          <p class="t-quote">„Wir haben unseren Standort in einer sehr schwach besiedelten Region. Zuvor waren wir mit vielen anderen Marketing-Maßnahmen immer wieder erfolglos. Seit 2 Jahren haben wir mit AS Marketing zum Glück keine Probleme mehr."</p>
+          <div class="t-author">
+            <img src="https://onecdn.io/media/13e99ce2-49f6-4bf0-b807-6781ba082ea8/preview" alt="Benjamin Kress" class="t-avatar">
+            <div><div class="t-name">Benjamin Kress</div><div class="t-role">Management · Sirio Pharma</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases reveal">
+  <div class="cases-header text-center">
+    <p class="s-label">Dokumentierte Erfolge</p>
+    <h2 class="s-heading">Auszug aus über 120 Erfolgsgeschichten</h2>
+  </div>
+  <div class="marquee-wrap">
+    <!-- Row 1 — scrolls left -->
+    <div class="marquee-row scroll-left">
+      <div class="c-card"><div class="c-name">G. Staehle GmbH</div><div class="c-ind">Maschinenbau / Industrie</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>Stetiger Fluss an qualifizierten Anfragen</span></div></div><div class="c-ctx">Vorherige Agentur lieferte Leads ohne gewünschte Qualität.</div></div>
+      <div class="c-card"><div class="c-name">Sidla & Schönberger</div><div class="c-ind">Bau / Spezialtiefbau</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>51 B2B-Anfragen in nur 21 Tagen</span></div></div><div class="c-ctx">Hochpreisige Projekte im Süddeutschen Raum gesucht.</div></div>
+      <div class="c-card"><div class="c-name">ROMA KG</div><div class="c-ind">Industrie / Fertigung</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>Digitale Sichtbarkeit massiv skaliert</span></div></div><div class="c-ctx">Wachstumsgetrieben – stetiger Bedarf an neuen Marktanteilen.</div></div>
+      <div class="c-card"><div class="c-name">DAS Private Jets</div><div class="c-ind">Luftfahrt / Dienstleistung</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>Konstante Sales-Pipeline aufgebaut</span></div></div><div class="c-ctx">Nischen-Angebot – über klassische Wege kaum greifbar.</div></div>
+      
+      <!-- Duplicate for seamless loop -->
+      <div class="c-card"><div class="c-name">G. Staehle GmbH</div><div class="c-ind">Maschinenbau / Industrie</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>Stetiger Fluss an qualifizierten Anfragen</span></div></div><div class="c-ctx">Vorherige Agentur lieferte Leads ohne gewünschte Qualität.</div></div>
+      <div class="c-card"><div class="c-name">Sidla & Schönberger</div><div class="c-ind">Bau / Spezialtiefbau</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>51 B2B-Anfragen in nur 21 Tagen</span></div></div><div class="c-ctx">Hochpreisige Projekte im Süddeutschen Raum gesucht.</div></div>
+      <div class="c-card"><div class="c-name">ROMA KG</div><div class="c-ind">Industrie / Fertigung</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>Digitale Sichtbarkeit massiv skaliert</span></div></div><div class="c-ctx">Wachstumsgetrieben – stetiger Bedarf an neuen Marktanteilen.</div></div>
+      <div class="c-card"><div class="c-name">DAS Private Jets</div><div class="c-ind">Luftfahrt / Dienstleistung</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>Konstante Sales-Pipeline aufgebaut</span></div></div><div class="c-ctx">Nischen-Angebot – über klassische Wege kaum greifbar.</div></div>
+    </div>
+  </div>
+  <!-- Mobile fallback: static grid -->
+  <div class="cases-mobile">
+    <div class="cases-mobile-grid">
+      <div class="c-card"><div class="c-name">Sidla & Schönberger</div><div class="c-ind">Bau / Spezialtiefbau</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>51 B2B-Anfragen in nur 21 Tagen</span></div></div><div class="c-ctx">Hochpreisige Projekte im Süddeutschen Raum gesucht.</div></div>
+      <div class="c-card"><div class="c-name">G. Staehle GmbH</div><div class="c-ind">Maschinenbau / Industrie</div><div class="c-results"><div class="c-res"><div class="c-chk"><i data-lucide="check"></i></div><span>Stetiger Fluss an qualifizierten Anfragen</span></div></div><div class="c-ctx">Vorherige Agentur lieferte Leads ohne gewünschte Qualität.</div></div>
+    </div>
+  </div>
+</section>
+<section class="mid-cta reveal">
+  <div class="container text-center">
+    <a href="#bewerbung" class="cta-main">Jetzt Potenzial-Analyse sichern</a>
+    <span class="scarcity">100 % kostenlos & unverbindlich</span>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process reveal">
+  <div class="container">
+    <p class="s-label text-center">Der Weg zum System</p>
+    <h2 class="s-heading text-center">So bauen wir Ihre Neukunden-Maschine</h2>
+    <div class="process-timeline">
+      <div class="p-step">
+        <div class="p-num">01</div>
+        <div class="p-content">
+          <div class="p-title">Kostenlose Potenzial-Analyse</div>
+          <div class="p-desc">Sie füllen unser Formular aus. Wir melden uns innerhalb von 24 Stunden und prüfen ehrlich gemeinsam, ob digitale Neukundengewinnung für Sie Sinn macht. Kein Verkaufsgespräch, sondern Fakten.</div>
+          <div class="p-time"><i data-lucide="clock"></i> Dauer: 15–30 min</div>
+        </div>
+      </div>
+      <div class="p-step">
+        <div class="p-num">02</div>
+        <div class="p-content">
+          <div class="p-title">Analyse & Zielgruppen-Deep Dive</div>
+          <div class="p-desc">Wenn es passt: Wir analysieren Ihr Angebot exakt. Wer kauft bei Ihnen? Warum? Was macht Sie besser? Wo halten sich diese Entscheider online auf?</div>
+          <div class="p-time"><i data-lucide="clock"></i> Einmalig: 60–90 min</div>
+        </div>
+      </div>
+      <div class="p-step">
+        <div class="p-num">03</div>
+        <div class="p-content">
+          <div class="p-title">Kampagnen & Qualifizierungs-Setup</div>
+          <div class="p-desc">Wir bauen gezielte Anzeigen (keine Gießkanne) und eine Landingpage, die filtert: Branche, Bedarf, Budget. Nur wer wirklich passt, kommt als Lead durch.</div>
+          <div class="p-time"><i data-lucide="check-circle"></i> Wir übernehmen 95% der Arbeit</div>
+        </div>
+      </div>
+      <div class="p-step">
+        <div class="p-num">04</div>
+        <div class="p-content">
+          <div class="p-title">Go-Live & Ihr Dashboard</div>
+          <div class="p-desc">Die Kampagnen starten. Alle qualifizierten Leads landen in Echtzeit in Ihrem persönlichen Dashboard (inkl. E-Mail/WhatsApp Benachrichtigung). Sie rufen nur noch Entscheider an, die Bedarf haben.</div>
+          <div class="p-time"><i data-lucide="clock"></i> 24/7 im Einsatz</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats reveal">
+  <div class="container-wide">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">5+</div><div class="stat-label">Jahre Erfahrung</div></div>
+      <div class="stat-item"><div class="stat-num">400+</div><div class="stat-label">Kampagnen umgesetzt</div></div>
+      <div class="stat-item"><div class="stat-num">200+</div><div class="stat-label">Zufriedene Kunden</div></div>
+      <div class="stat-item"><div class="stat-num">10 Mio.+</div><div class="stat-label">Personen erreicht</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews reveal">
+  <div class="container-wide">
+    <p class="s-label text-center">Erfahrungen</p>
+    <h2 class="s-heading text-center">Das sagen Entscheider über die Zusammenarbeit</h2>
+    <div class="reviews-grid">
+      <div class="r-card">
+        <div class="r-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <p class="r-text">„Wir waren anfangs skeptisch, ob Social Media für unser sehr technisches Angebot funktioniert. Man merkt aber sofort, dass echte Kompetenz dahinter steckt. Nach wenigen Wochen hatten wir die ersten hochqualitativen Anfragen auf dem Tisch. Kann AS Marketing uneingeschränkt weiterempfehlen."</p>
+        <div class="r-meta">
+          <img src="https://onecdn.io/media/5daa7368-ab48-41e4-b481-1531450ca213/preview" alt="Staehle" class="r-logo">
+          <div><div class="r-company">G. Staehle GmbH & Co. KG</div><div class="r-industry">Blechverarbeitung</div></div>
+        </div>
+      </div>
+      <div class="r-card">
+        <div class="r-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <p class="r-text">„Absolut begeistert! Maßgeschneiderte Kampagnen, professionelle Kommunikation. Keine 0815-Agentur, sondern ein echtes System, das greift. Tolle Arbeit, tolle Menschen, messbare Resultate!"</p>
+        <div class="r-meta">
+          <img src="https://onecdn.io/media/70918ef9-21e0-4c0b-85b8-79634631d04a/preview" alt="Logex" class="r-logo">
+          <div><div class="r-company">Logex System GmbH</div><div class="r-industry">Recycling & Entsorgung</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-s reveal">
+  <div class="container">
+    <div class="big-q">Sie wissen am Anfang des Monats nicht, wie viele Anfragen am Ende rauskommen. Das ist kein Geschäftsmodell. Das ist Hoffnung. Lassen Sie uns ein System bauen.</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq reveal">
+  <div class="container">
+    <p class="s-label text-center">Häufige Fragen</p>
+    <h2 class="s-heading text-center">Ihre Fragen, unsere Antworten</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Seid ihr die nächste 0815-Marketing-Agentur?<i data-lucide="plus"></i></button>
+        <div class="faq-a">Nein. Wir verkaufen keine Klicks oder Likes. Wir bauen Ihnen ein digitales System zur Neukundengewinnung, das am Ende echte, qualifizierte Anfragen auf Ihren Schreibtisch liefert. Mit über 400 Kampagnen im Mittelstand kennen wir die Praxis.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Funktioniert das auch bei sehr spezifischen B2B-Produkten?<i data-lucide="plus"></i></button>
+        <div class="faq-a">Ja. Gerade bei erklärungsbedürftigen B2B-Produkten oder Nischen-Dienstleistungen trennt sich die Spreu vom Weizen. Durch KI-gestütztes Targeting und clevere Qualifizierungs-Fragen filtern wir unpassende Kontakte rigoros aus.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Ist das Erstgespräch wirklich kostenlos und unverbindlich?<i data-lucide="plus"></i></button>
+        <div class="faq-a">Ja, zu 100 %. Wir arbeiten nur mit Unternehmen zusammen, bei denen wir sicher sind, dass wir Ergebnisse liefern können. Deshalb prüfen wir das vorher in einem kurzen Telefonat. Ganz ehrlich und ohne Hard-Selling.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Was kostet das Ganze?<i data-lucide="plus"></i></button>
+        <div class="faq-a">Das hängt vom nötigen Setup ab. Aber: Als offiziell gelisteter BAFA-Berater können wir Ihnen oft bis zu 80 % staatliche Förderung für die Konzeption ermöglichen. Wir rechnen Ihnen das im Gespräch transparent vor.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Wie schnell sehe ich Ergebnisse?<i data-lucide="plus"></i></button>
+        <div class="faq-a">Sobald das System steht und die Kampagnen live gehen, dauert es meist nur wenige Tage, bis die ersten qualifizierten Anfragen über Ihr neues Dashboard eintreffen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECIDE -->
+<section class="decide reveal" id="bewerbung">
+  <div class="container">
+    <h2>Bereit für planbares Wachstum?</h2>
+    <p>Füllen Sie das kurze Formular aus (dauert 60 Sekunden). Wir prüfen gemeinsam, ob digitale Neukundengewinnung für Ihr Unternehmen Sinn macht. Und wenn nicht, sagen wir Ihnen das auch.</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-s">
+  <div class="container">
+    <div class="form-c">
+      <div class="progress">
+        <div class="pc active" id="pc1">1</div><div class="pl" id="pl1"></div>
+        <div class="pc" id="pc2">2</div><div class="pl" id="pl2"></div>
+        <div class="pc" id="pc3">3</div><div class="pl" id="pl3"></div>
+        <div class="pc" id="pc4">4</div>
+      </div>
+      <div class="fcard">
+        <!-- Step 1 -->
+        <div class="step active" id="step1">
+          <div class="st">1. Persönliche Daten</div>
+          <div class="sd">Bitte geben Sie Ihre Kontaktdaten ein, damit wir Sie erreichen können.</div>
+          <div class="fr"><div class="fg"><label>Vorname *</label><input type="text" placeholder="Max" id="fn"></div><div class="fg"><label>Nachname *</label><input type="text" placeholder="Mustermann" id="ln"></div></div>
+          <div class="fg"><label>E-Mail-Adresse (geschäftlich) *</label><input type="email" placeholder="max@firma.de" id="em"></div>
+          <div class="fg"><label>Handynummer *</label><input type="tel" id="ph"></div>
+          <div class="fn"><div></div><button class="bn" onclick="ns(2)">Weiter zu Schritt 2 <i data-lucide="arrow-right" style="width:16px;height:16px"></i></button></div>
+        </div>
+        <!-- Step 2 -->
+        <div class="step" id="step2">
+          <div class="st">2. Unternehmensstatus</div>
+          <div class="sd">Wo steht Ihr Unternehmen aktuell?</div>
+          <div class="fg"><label>Name Ihres Unternehmens *</label><input type="text" placeholder="Mustermann GmbH" id="co"></div>
+          <div class="fg"><label>Aktueller Jahresumsatz (ca.)</label><select id="sz"><option value="" disabled selected>Bitte wählen...</option><option>Unter 500.000 €</option><option>500.000 € – 2 Mio. €</option><option>2 Mio. € – 10 Mio. €</option><option>Über 10 Mio. €</option></select></div>
+          <div class="fg"><label>Was ist Ihr Kernangebot und wer ist Ihre Wunschzielgruppe?</label><textarea rows="3" placeholder="z.B. Spezialmaschinenbau für die Automobilzulieferer-Industrie..." id="ch"></textarea></div>
+          <div class="fn"><button class="bb" onclick="ps(1)">Zurück</button><button class="bn" onclick="ns(3)">Weiter zu Schritt 3 <i data-lucide="arrow-right" style="width:16px;height:16px"></i></button></div>
+        </div>
+        <!-- Step 3 -->
+        <div class="step" id="step3">
+          <div class="st">3. Kurze Qualifizierung</div>
+          <div class="sd">Bitte bestätigen Sie folgende Voraussetzung.</div>
+          <div class="fg">
+            <label>Sind Sie bereit, in ein digitales System zu investieren, um planbar Neukunden zu gewinnen?</label>
+            <div class="rg" style="margin-top:12px">
+              <div class="ro" onclick="sr(this)"><div class="rd"></div>Ja, wir wollen wachsen und suchen eine Profilösung.</div>
+              <div class="ro" onclick="sr(this)"><div class="rd"></div>Ich möchte mich erst einmal unverbindlich informieren.</div>
+              <div class="ro" onclick="sr(this)"><div class="rd"></div>Nein, wir haben aktuell genug Kunden/keine Kapazitäten.</div>
+            </div>
+          </div>
+          <div class="fn"><button class="bb" onclick="ps(2)">Zurück</button><button class="bn" onclick="ns(4)">Termin auswählen <i data-lucide="arrow-right" style="width:16px;height:16px"></i></button></div>
+        </div>
+        <!-- Step 4 -->
+        <div class="step" id="step4">
+          <div class="st">4. Potenzial-Analyse sichern</div>
+          <div class="sd">Wählen Sie jetzt einen passenden Termin für das kostenlose Erstgespräch.</div>
+          <div class="cal-wrap"><iframe id="calF" src="about:blank" loading="lazy"></iframe></div>
+          <div class="fn" style="margin-top:20px"><button class="bb" onclick="ps(3)">Zurück zu den Daten</button><div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="f-links">
+      <a href="https://as-marketing-allgaeu.de/impressum">Impressum</a>
+      <a href="https://as-marketing-allgaeu.de/datenschutz">Datenschutz</a>
+      <a href="https://as-marketing-allgaeu.de/agb">AGB</a>
+    </div>
+    <p class="f-copy">© 2026 AS Marketing. Alle Rechte vorbehalten.</p>
+    <p class="f-disc">Die geteilten Ergebnisse sind reale Kundenergebnisse. Ihre Resultate hängen von Ihrem Unternehmen, Ihrem Angebot und Ihrem Markt ab.</p>
+  </div>
+</footer>
+
+<script>
+// Init Lucide icons
+lucide.createIcons();
+
+// Reveal
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Radio
+function sr(el){el.parentElement.querySelectorAll('.ro').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
+
+// Timeline animation
+const tl=document.querySelector('.process-timeline');
+if(tl){
+  const steps=tl.querySelectorAll('.p-step');
+  const tlObs=new IntersectionObserver(e=>{
+    e.forEach(x=>{
+      if(x.isIntersecting){
+        tl.classList.add('tl-active');
+        steps.forEach((s,i)=>{
+          setTimeout(()=>s.classList.add('tl-visible'), 200 + i*180);
+        });
+        tlObs.unobserve(x.target);
+      }
+    });
+  },{threshold:0.15});
+  tlObs.observe(tl);
+}
+
+// FAQ
+function toggleFaq(btn){
+  const a=btn.nextElementSibling;
+  const isOpen=a.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(x=>x.classList.remove('open'));
+  if(!isOpen){a.classList.add('open');btn.classList.add('open');}
+}
+
+// Form
+const iti = intlTelInput(document.getElementById('ph'), {
+  initialCountry: 'de',
+  preferredCountries: ['de','at','ch'],
+  separateDialCode: true,
+  autoPlaceholder: 'aggressive',
+  formatAsYouType: true,
+  countrySearch: true,
+  loadUtilsOnInit: 'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js'
+});
+
+let cur=1;
+function up(){for(let i=1;i<=4;i++){const c=document.getElementById('pc'+i);c.classList.remove('active','done');if(i<cur)c.classList.add('done');if(i===cur)c.classList.add('active');}for(let i=1;i<=3;i++){document.getElementById('pl'+i).classList.toggle('active',i<cur);}}
+function ss(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');lucide.createIcons();}
+function v(id){return document.getElementById(id)?.value?.trim()||'';}
+function getPhone(){return iti.getNumber()||'';}
+function sh(){const b=document.querySelector('.step.active .bn');if(!b)return;b.style.animation='shake 0.4s';setTimeout(()=>b.style.animation='',400);}
+function ns(n){
+  if(cur===1&&(!v('fn')||!v('ln')||!v('em')||!getPhone())){sh();return;}
+  if(cur===2&&!v('co')){sh();return;}
+  if(cur===3){
+    if(!document.querySelector('.ro.sel')){sh();return;}
+    const base='https://calendly.com/as-marketing-allgaeu/erstgespraech';
+    const p=new URLSearchParams({hide_gdpr_banner:'1',name:v('fn')+' '+v('ln'),email:v('em'),a1:getPhone(),a2:v('co')});
+    document.getElementById('calF').src=base+'?'+p.toString();
+  }
+  cur=n;up();ss(n);
+  document.getElementById('bewerbung').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function ps(n){cur=n;up();ss(n);}
+document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}'}));
+</script>
+</body>
+</html>
