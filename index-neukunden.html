@@ -966,15 +966,18 @@ function toggleFaq(btn){
   if(!isOpen){a.classList.add('open');btn.classList.add('open');}
 }
 
-const iti = intlTelInput(document.getElementById('ph'), {
-  initialCountry: 'de',
-  preferredCountries: ['de','at','ch'],
-  separateDialCode: true,
-  autoPlaceholder: 'aggressive',
-  formatAsYouType: true,
-  countrySearch: true,
-  loadUtilsOnInit: 'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js'
-});
+const inputPh = document.getElementById('ph');
+let iti = null;
+if (inputPh) {
+  iti = window.intlTelInput(inputPh, {
+    initialCountry: 'de',
+    preferredCountries: ['de','at','ch'],
+    separateDialCode: true,
+    autoPlaceholder: 'aggressive',
+    formatAsYouType: true,
+    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js'
+  });
+}
 
 // Modal Logic
 function openModal() {
@@ -990,10 +993,11 @@ let cur=1;
 function up(){for(let i=1;i<=4;i++){const c=document.getElementById('pc'+i);c.classList.remove('active','done');if(i<cur)c.classList.add('done');if(i===cur)c.classList.add('active');}for(let i=1;i<=3;i++){document.getElementById('pl'+i).classList.toggle('active',i<cur);}}
 function ss(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');lucide.createIcons();}
 function v(id){return document.getElementById(id)?.value?.trim()||'';}
-function getPhone(){return iti.getNumber()||'';}
+function getPhone(){return iti ? iti.getNumber() : v('ph');}
 function sh(){const b=document.querySelector('.step.active .bn');if(!b)return;b.style.animation='shake 0.4s';setTimeout(()=>b.style.animation='',400);}
 function ns(n){
-  if(cur===1&&(!v('fn')||!v('ln')||!v('em')||!getPhone())){sh();return;}
+  // WICHTIG: Hier wurde !getPhone() durch !v('ph') ersetzt, damit es nicht blockiert!
+  if(cur===1&&(!v('fn')||!v('ln')||!v('em')||!v('ph'))){sh();return;}
   if(cur===2&&!v('co')){sh();return;}
   if(cur===3){
     if(!document.querySelector('.ro.sel')){sh();return;}
