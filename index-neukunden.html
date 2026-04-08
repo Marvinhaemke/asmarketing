@@ -221,20 +221,6 @@
   .pillar-icon i { width:36px; height:36px; stroke-width:1.5; }
   .pillar-title { font-weight:600; font-size:16px; color:var(--text); line-height: 1.4;}
 
-  /* ── BAFA ── */
-  .bafa-banner { padding:64px 0; background:var(--white); }
-  .bafa-inner {
-    display:flex; align-items:center; gap:32px; max-width:800px; margin:0 auto;
-    background: linear-gradient(135deg, #fff 0%, var(--red-light) 100%);
-    border:1px solid rgba(229,36,40,0.15); border-radius:var(--radius-lg); padding:32px 40px;
-    box-shadow: var(--shadow-sm);
-  }
-  .bafa-icon { flex-shrink:0; width:64px; height:64px; border-radius:16px; background:#fff; box-shadow: var(--shadow-sm); display:flex; align-items:center; justify-content:center; color:var(--red); }
-  .bafa-icon i { width:32px; height:32px; }
-  .bafa-text h3 { font-weight:800; font-size:20px; color:var(--text); margin-bottom:8px; letter-spacing: -0.01em;}
-  .bafa-text p { font-size:15px; color:var(--text-mid); line-height:1.6; }
-  @media(max-width:600px){ .bafa-inner{flex-direction:column;text-align:center; padding: 32px 24px;} }
-
   /* ── Testimonials ── */
   .testi { padding:120px 0; background:var(--bg); border-top:1px solid var(--border); }
   .testi-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:56px; }
@@ -394,7 +380,6 @@
   .decide-img img { width: 100%; border-radius: var(--radius-md); object-fit: cover; box-shadow: var(--shadow-md);}
   
   /* ── Form ── */
-  .form-s { padding:0 0 120px; background:var(--white); }
   .form-c { max-width:640px; margin:0 auto; }
   .progress { display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:48px; }
   .pc {
@@ -480,6 +465,28 @@
   .cal-wrap { border-radius:12px; overflow:hidden; min-height:680px; background:#fff; border: 1px solid var(--border);}
   .cal-wrap iframe { width:100%; min-height:680px; border:none; }
 
+  /* ── Modal / Pop-Up ── */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(9, 9, 11, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    z-index: 9999; display: flex; align-items: flex-start; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+    padding: 60px 20px; overflow-y: auto;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .modal-content {
+    position: relative; width: 100%; max-width: 640px; margin: auto;
+    transform: translateY(20px) scale(0.98); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .modal-overlay.open .modal-content { transform: translateY(0) scale(1); }
+  .modal-close {
+    position: absolute; top: -48px; right: 0; background: none; border: none; color: #fff;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: var(--font); font-weight: 600; font-size: 15px; opacity: 0.8; transition: opacity 0.2s;
+  }
+  .modal-close:hover { opacity: 1; }
+  .modal-close i { width: 24px; height: 24px; stroke-width: 2.5; }
+
   /* ── Footer ── */
   footer { border-top:1px solid var(--border); padding:64px 0 40px; text-align:center; background:var(--white); }
   .f-links { display:flex; justify-content:center; gap:32px; margin-bottom:24px; }
@@ -508,6 +515,10 @@
     .marquee-wrap{display:none;}
     .cases-mobile{display:block;}
   }
+  @media(max-width:600px){
+    .modal-overlay { padding: 20px 16px; }
+    .modal-close { top: -36px; right: 8px; }
+  }
   @media(max-width:480px){ .pillars-grid{grid-template-columns:1fr;} }
 </style>
 </head>
@@ -524,7 +535,7 @@
       <iframe src="https://fast.wistia.net/embed/iframe/nmiss9h4st?seo=true&videoFoam=false" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
     <p class="qualifier">Für Unternehmen im Mittelstand (B2B & Dienstleistung)</p>
-    <a href="#bewerbung" class="cta-main">Jetzt Erstgespräch vereinbaren</a>
+    <a href="#" class="cta-main" onclick="openModal(); return false;">Jetzt Erstgespräch vereinbaren</a>
     <div class="scarcity"><i data-lucide="shield-check"></i> 100 % kostenlos & unverbindlich · Über 400 Kampagnen Erfahrung</div>
   </div>
 </section>
@@ -602,19 +613,6 @@
       <div class="pillar premium-card"><div class="pillar-icon"><i data-lucide="megaphone"></i></div><div class="pillar-title">2. KI-gestützte<br>Ad-Kampagnen</div></div>
       <div class="pillar premium-card"><div class="pillar-icon"><i data-lucide="filter"></i></div><div class="pillar-title">3. Landingpages &<br>Qualifizierung</div></div>
       <div class="pillar premium-card"><div class="pillar-icon"><i data-lucide="layout-dashboard"></i></div><div class="pillar-title">4. Exklusives<br>Lead-Dashboard</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- BAFA -->
-<section class="bafa-banner reveal">
-  <div class="container">
-    <div class="bafa-inner">
-      <div class="bafa-icon"><i data-lucide="award"></i></div>
-      <div class="bafa-text">
-        <h3>Bis zu 80 % staatlicher Zuschuss möglich</h3>
-        <p>Wir sind als BAFA-Berater offiziell gelistet. Das bedeutet: Unsere strategische Beratung kann für Ihr Unternehmen stark gefördert werden.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -705,7 +703,7 @@
 </section>
 <section class="mid-cta reveal">
   <div class="container text-center">
-    <a href="#bewerbung" class="cta-main">Jetzt Erstgespräch vereinbaren</a>
+    <a href="#" class="cta-main" onclick="openModal(); return false;">Jetzt Erstgespräch vereinbaren</a>
   </div>
 </section>
 
@@ -832,7 +830,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Was kostet das Ganze?<i data-lucide="plus"></i></button>
-        <div class="faq-a">Das hängt vom nötigen Setup ab. Aber: Als offiziell gelisteter BAFA-Berater können wir Ihnen oft bis zu 80 % staatliche Förderung für die Konzeption ermöglichen. Wir rechnen Ihnen das im Gespräch transparent vor.</div>
+        <div class="faq-a">Das hängt vom nötigen Setup und Ihren individuellen Zielen ab. Wir rechnen Ihnen das im kostenlosen Erstgespräch komplett transparent vor, sobald wir Ihre aktuelle Situation analysiert haben.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Wie schnell sehe ich Ergebnisse?<i data-lucide="plus"></i></button>
@@ -856,7 +854,7 @@
         <li><i data-lucide="check-circle-2"></i> Kein aufdringliches Verkaufsgespräch</li>
       </ul>
       
-      <a href="#form-scroll-target" class="cta-main" onclick="document.getElementById('form-scroll-target').scrollIntoView({behavior:'smooth',block:'start'}); return false;">Jetzt Erstgespräch vereinbaren</a>
+      <a href="#" class="cta-main" onclick="openModal(); return false;">Jetzt Erstgespräch vereinbaren</a>
     </div>
     
     <div class="decide-img">
@@ -866,9 +864,10 @@
   </div>
 </section>
 
-<!-- FORM -->
-<section class="form-s" id="form-scroll-target">
-  <div class="container">
+<!-- FORM MODAL -->
+<div class="modal-overlay" id="formModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">Schließen <i data-lucide="x"></i></button>
     <div class="form-c">
       <div class="progress">
         <div class="pc active" id="pc1">1</div><div class="pl" id="pl1"></div>
@@ -919,7 +918,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -977,6 +976,16 @@ const iti = intlTelInput(document.getElementById('ph'), {
   loadUtilsOnInit: 'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js'
 });
 
+// Modal Logic
+function openModal() {
+  document.getElementById('formModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('formModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 let cur=1;
 function up(){for(let i=1;i<=4;i++){const c=document.getElementById('pc'+i);c.classList.remove('active','done');if(i<cur)c.classList.add('done');if(i===cur)c.classList.add('active');}for(let i=1;i<=3;i++){document.getElementById('pl'+i).classList.toggle('active',i<cur);}}
 function ss(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');lucide.createIcons();}
@@ -993,9 +1002,13 @@ function ns(n){
     document.getElementById('calF').src=base+'?'+p.toString();
   }
   cur=n;up();ss(n);
-  document.getElementById('form-scroll-target').scrollIntoView({behavior:'smooth',block:'start'});
+  // Scroll pop-up back to top on step change
+  document.getElementById('formModal').scrollTo({top: 0, behavior:'smooth'});
 }
-function ps(n){cur=n;up();ss(n);}
+function ps(n){
+  cur=n;up();ss(n);
+  document.getElementById('formModal').scrollTo({top: 0, behavior:'smooth'});
+}
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}'}));
 </script>
 </body>
