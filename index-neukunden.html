@@ -920,7 +920,20 @@ function up(){
 }
 function ss(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');lucide.createIcons();}
 function v(id){return document.getElementById(id)?.value?.trim()||'';}
-function getPhone(){return iti ? iti.getNumber() : v('ph');}
+function getPhone(){
+  if(!iti) return v('ph');
+  var intl = iti.getNumber();
+  if(intl) return intl;
+  var raw = v('ph');
+  if(!raw) return '';
+  var dialCode = iti.getSelectedCountryData()?.dialCode || '';
+  return dialCode ? '+' + dialCode + raw.replace(/^0+/,'') : raw;
+}
+function isPhoneValid(){
+  if(!v('ph')) return false;
+  if(iti && typeof iti.isValidNumber === 'function') return iti.isValidNumber();
+  return v('ph').replace(/\D/g,'').length >= 6;
+}
 function sh(){const b=document.querySelector('.step.active .bn');if(!b)return;b.style.animation='shake 0.4s';setTimeout(()=>b.style.animation='',400);}
 
 function scrollToForm(){
@@ -940,7 +953,7 @@ async function sendWebhook(url, data){
 
 function ns(n){
   if(cur===1){
-    if(!v('fn')||!v('ln')||!v('em')||!v('ph')){sh();return;}
+    if(!v('fn')||!v('ln')||!v('em')||!isPhoneValid()){sh();return;}
     // Send Step 1 data to webhook
     sendWebhook('https://hook.eu1.make.com/j25ytqe1arhv1zifraw1rqbg5t4j4h9i', {
       vorname: v('fn'),
