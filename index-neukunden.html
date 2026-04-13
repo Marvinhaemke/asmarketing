@@ -952,8 +952,8 @@ function ns(n){
   if(cur===2){
     if(!v('co')||!v('nk')||!v('up')){sh();return;}
     // Send Step 1 + Step 2 data to webhook
-    const base='https://calendly.com/as-marketing-allgaeu/erstgespraech';
-    const p=new URLSearchParams({hide_gdpr_banner:'1',name:v('fn')+' '+v('ln'),email:v('em'),a1:getPhone(),a2:v('co')});
+    const base='https://calendly.com/as-marketing-allgaeu/erstgespraech-website';
+    const p=new URLSearchParams({embed_domain:'as-marketing-allgaeu.de',embed_type:'Inline',hide_gdpr_banner:'1',primary_color:'e52428',name:v('fn')+' '+v('ln'),email:v('em'),a1:getPhone(),a2:v('co')});
     document.getElementById('calF').src=base+'?'+p.toString();
     sendWebhook('https://hook.eu1.make.com/hrt921fju8vwgl1rplev7d4o7fo29gx6', {
       vorname: v('fn'),
