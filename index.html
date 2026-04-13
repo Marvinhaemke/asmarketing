@@ -9,6 +9,20 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '923996538446063');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=923996538446063&ev=PageView&noscript=1"/></noscript>
 <style>
   :root {
     --red: #E52428;
@@ -920,7 +934,26 @@ function up(){
 }
 function ss(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');lucide.createIcons();}
 function v(id){return document.getElementById(id)?.value?.trim()||'';}
-function getPhone(){return iti ? iti.getNumber() : v('ph');}
+function getPhone(){
+  if(!iti) return v('ph');
+  try {
+    var intl = iti.getNumber();
+    if(intl) return intl;
+  } catch(e){}
+  var raw = v('ph');
+  if(!raw) return '';
+  try {
+    var data = iti.getSelectedCountryData();
+    if(data && data.dialCode) return '+' + data.dialCode + raw.replace(/^0+/,'');
+  } catch(e){}
+  return raw;
+}
+function isPhoneValid(){
+  var raw = v('ph');
+  if(!raw) return false;
+  var phone = getPhone();
+  return phone.replace(/\D/g,'').length >= 6;
+}
 function sh(){const b=document.querySelector('.step.active .bn');if(!b)return;b.style.animation='shake 0.4s';setTimeout(()=>b.style.animation='',400);}
 
 function scrollToForm(){
@@ -940,7 +973,7 @@ async function sendWebhook(url, data){
 
 function ns(n){
   if(cur===1){
-    if(!v('fn')||!v('ln')||!v('em')||!v('ph')){sh();return;}
+    if(!v('fn')||!v('ln')||!v('em')||!isPhoneValid()){sh();return;}
     // Send Step 1 data to webhook
     sendWebhook('https://hook.eu1.make.com/j25ytqe1arhv1zifraw1rqbg5t4j4h9i', {
       vorname: v('fn'),
@@ -948,12 +981,14 @@ function ns(n){
       email: v('em'),
       telefon: getPhone()
     });
+    // Fire Meta Pixel Lead event
+    if(typeof fbq==='function') fbq('track','Lead');
   }
   if(cur===2){
     if(!v('co')||!v('nk')||!v('up')){sh();return;}
     // Send Step 1 + Step 2 data to webhook
-    const base='https://calendly.com/as-marketing-allgaeu/erstgespraech';
-    const p=new URLSearchParams({hide_gdpr_banner:'1',name:v('fn')+' '+v('ln'),email:v('em'),a1:getPhone(),a2:v('co')});
+    const base='https://calendly.com/as-marketing-allgaeu/erstgespraech-website';
+    const p=new URLSearchParams({embed_domain:'as-marketing-allgaeu.de',embed_type:'Inline',hide_gdpr_banner:'1',primary_color:'e52428',name:v('fn')+' '+v('ln'),email:v('em'),a1:getPhone(),a2:v('co')});
     document.getElementById('calF').src=base+'?'+p.toString();
     sendWebhook('https://hook.eu1.make.com/hrt921fju8vwgl1rplev7d4o7fo29gx6', {
       vorname: v('fn'),
