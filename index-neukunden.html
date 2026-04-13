@@ -9,6 +9,20 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '923996538446063');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=923996538446063&ev=PageView&noscript=1"/></noscript>
 <style>
   :root {
     --red: #E52428;
@@ -967,6 +981,8 @@ function ns(n){
       email: v('em'),
       telefon: getPhone()
     });
+    // Fire Meta Pixel Lead event
+    if(typeof fbq==='function') fbq('track','Lead');
   }
   if(cur===2){
     if(!v('co')||!v('nk')||!v('up')){sh();return;}
