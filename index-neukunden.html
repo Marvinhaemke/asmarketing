@@ -922,17 +922,23 @@ function ss(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove(
 function v(id){return document.getElementById(id)?.value?.trim()||'';}
 function getPhone(){
   if(!iti) return v('ph');
-  var intl = iti.getNumber();
-  if(intl) return intl;
+  try {
+    var intl = iti.getNumber();
+    if(intl) return intl;
+  } catch(e){}
   var raw = v('ph');
   if(!raw) return '';
-  var dialCode = iti.getSelectedCountryData()?.dialCode || '';
-  return dialCode ? '+' + dialCode + raw.replace(/^0+/,'') : raw;
+  try {
+    var data = iti.getSelectedCountryData();
+    if(data && data.dialCode) return '+' + data.dialCode + raw.replace(/^0+/,'');
+  } catch(e){}
+  return raw;
 }
 function isPhoneValid(){
-  if(!v('ph')) return false;
-  if(iti && typeof iti.isValidNumber === 'function') return iti.isValidNumber();
-  return v('ph').replace(/\D/g,'').length >= 6;
+  var raw = v('ph');
+  if(!raw) return false;
+  var phone = getPhone();
+  return phone.replace(/\D/g,'').length >= 6;
 }
 function sh(){const b=document.querySelector('.step.active .bn');if(!b)return;b.style.animation='shake 0.4s';setTimeout(()=>b.style.animation='',400);}
 
