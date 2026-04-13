@@ -465,27 +465,8 @@
   .cal-wrap { border-radius:12px; overflow:hidden; min-height:680px; background:#fff; border: 1px solid var(--border);}
   .cal-wrap iframe { width:100%; min-height:680px; border:none; }
 
-  /* ── Modal / Pop-Up ── */
-  .modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(9, 9, 11, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    z-index: 9999; display: flex; align-items: flex-start; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-    padding: 60px 20px; overflow-y: auto;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: auto; }
-  .modal-content {
-    position: relative; width: 100%; max-width: 640px; margin: auto;
-    transform: translateY(20px) scale(0.98); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .modal-overlay.open .modal-content { transform: translateY(0) scale(1); }
-  .modal-close {
-    position: absolute; top: -48px; right: 0; background: none; border: none; color: #fff;
-    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-    font-family: var(--font); font-weight: 600; font-size: 15px; opacity: 0.8; transition: opacity 0.2s;
-  }
-  .modal-close:hover { opacity: 1; }
-  .modal-close i { width: 24px; height: 24px; stroke-width: 2.5; }
+  /* ── Inline Form Section ── */
+  .form-section { padding:120px 0 80px; background:var(--bg); border-top:1px solid var(--border); }
 
   /* ── Footer ── */
   footer { border-top:1px solid var(--border); padding:64px 0 40px; text-align:center; background:var(--white); }
@@ -516,8 +497,6 @@
     .cases-mobile{display:block;}
   }
   @media(max-width:600px){
-    .modal-overlay { padding: 20px 16px; }
-    .modal-close { top: -36px; right: 8px; }
   }
   @media(max-width:480px){ .pillars-grid{grid-template-columns:1fr;} }
 </style>
@@ -535,7 +514,7 @@
       <iframe src="https://fast.wistia.net/embed/iframe/nmiss9h4st?seo=true&videoFoam=false" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
     <p class="qualifier">Für Unternehmen im Mittelstand (B2B & Dienstleistung)</p>
-    <a href="#" class="cta-main" onclick="openModal(); return false;">Jetzt Erstgespräch vereinbaren</a>
+    <a href="#formular" class="cta-main">Jetzt 30 Gratis Leads sichern <i data-lucide="arrow-right" style="width:20px;height:20px"></i></a>
     <div class="scarcity"><i data-lucide="shield-check"></i> 100 % kostenlos & unverbindlich · Über 400 Kampagnen Erfahrung</div>
   </div>
 </section>
@@ -617,44 +596,6 @@
   </div>
 </section>
 
-<!-- KUNDENSTIMMEN -->
-<section class="testi reveal">
-  <div class="container-wide">
-    <p class="s-label text-center">Kundenstimmen</p>
-    <h2 class="s-heading text-center">Echte Ergebnisse aus dem Mittelstand</h2>
-    <div class="testi-grid">
-      <!-- Holzwarth -->
-      <div class="t-card premium-card">
-        <div class="t-video">
-          <iframe src="https://www.youtube.com/embed/s_BYSc26Th8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="t-body">
-          <div class="t-tag"><i data-lucide="check-circle-2"></i> Hochqualifizierte B2B Anfragen generiert</div>
-          <p class="t-quote">„Die Zusammenarbeit war großartig. Alles lief schnell und unkompliziert ab. Innerhalb von wenigen Tagen kamen die ersten Anfragen rein und wir konnten direkt messbare Resultate verzeichnen."</p>
-          <div class="t-author">
-            <img src="https://onecdn.io/media/20ac85f0-b630-4bc9-b018-569b266073c4/preview" alt="Ulrich Wiedemann" class="t-avatar">
-            <div><div class="t-name">Ulrich Wiedemann</div><div class="t-role">Geschäftsführer · Holzwarth Fenster & Türen</div></div>
-          </div>
-        </div>
-      </div>
-      <!-- Sirio Pharma -->
-      <div class="t-card premium-card">
-        <div class="t-video">
-          <iframe src="https://www.youtube.com/embed/CalqM3o-2Jo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="t-body">
-          <div class="t-tag"><i data-lucide="check-circle-2"></i> Planbares Wachstum trotz schwieriger Region</div>
-          <p class="t-quote">„Wir haben unseren Standort in einer sehr schwach besiedelten Region. Zuvor waren wir mit vielen anderen Marketing-Maßnahmen immer wieder erfolglos. Seit 2 Jahren haben wir mit AS Marketing zum Glück keine Probleme mehr."</p>
-          <div class="t-author">
-            <img src="https://onecdn.io/media/13e99ce2-49f6-4bf0-b807-6781ba082ea8/preview" alt="Benjamin Kress" class="t-avatar">
-            <div><div class="t-name">Benjamin Kress</div><div class="t-role">Management · Sirio Pharma</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CASES -->
 <section class="cases reveal">
   <div class="cases-header text-center">
@@ -703,7 +644,7 @@
 </section>
 <section class="mid-cta reveal">
   <div class="container text-center">
-    <a href="#" class="cta-main" onclick="openModal(); return false;">Jetzt Erstgespräch vereinbaren</a>
+    <a href="#formular" class="cta-main">Jetzt 30 Gratis Leads sichern <i data-lucide="arrow-right" style="width:20px;height:20px"></i></a>
   </div>
 </section>
 
@@ -854,26 +795,26 @@
         <li><i data-lucide="check-circle-2"></i> Kein aufdringliches Verkaufsgespräch</li>
       </ul>
       
-      <a href="#" class="cta-main" onclick="openModal(); return false;">Jetzt Erstgespräch vereinbaren</a>
+      <a href="#formular" class="cta-main">Jetzt 30 Gratis Leads sichern <i data-lucide="arrow-right" style="width:20px;height:20px"></i></a>
     </div>
     
     <div class="decide-img">
-      <!-- Platzhalter für das Foto aus dem Screenshot (Samuel am Schreibtisch) -->
-      <img src="https://via.placeholder.com/600x600/f5f5f5/555?text=Bild+Samuel" alt="Samuel Schmid">
+      <img src="assets/images/Samuel Image.jpeg" alt="Samuel Schmid">
     </div>
   </div>
 </section>
 
-<!-- FORM MODAL -->
-<div class="modal-overlay" id="formModal" onclick="if(event.target===this)closeModal()">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeModal()">Schließen <i data-lucide="x"></i></button>
+<!-- INLINE FORM -->
+<section class="form-section" id="formular">
+  <div class="container">
+    <p class="s-label text-center">Jetzt starten</p>
+    <h2 class="s-heading text-center">Sichern Sie sich jetzt 30 Gratis Leads</h2>
+    <p class="s-sub text-center">Füllen Sie das kurze Formular aus – wir melden uns innerhalb von 24 Stunden.</p>
     <div class="form-c">
       <div class="progress">
         <div class="pc active" id="pc1">1</div><div class="pl" id="pl1"></div>
         <div class="pc" id="pc2">2</div><div class="pl" id="pl2"></div>
-        <div class="pc" id="pc3">3</div><div class="pl" id="pl3"></div>
-        <div class="pc" id="pc4">4</div>
+        <div class="pc" id="pc3">3</div>
       </div>
       <div class="fcard">
         <!-- Step 1 -->
@@ -890,35 +831,21 @@
           <div class="st">2. Unternehmensstatus</div>
           <div class="sd">Wo steht Ihr Unternehmen aktuell?</div>
           <div class="fg"><label>Name Ihres Unternehmens *</label><input type="text" placeholder="Mustermann GmbH" id="co"></div>
-          <div class="fg"><label>Aktueller Jahresumsatz (ca.)</label><select id="sz"><option value="" disabled selected>Bitte wählen...</option><option>Unter 500.000 €</option><option>500.000 € – 2 Mio. €</option><option>2 Mio. € – 10 Mio. €</option><option>Über 10 Mio. €</option></select></div>
-          <div class="fg"><label>Was ist Ihr Kernangebot und wer ist Ihre Wunschzielgruppe?</label><textarea rows="3" placeholder="z.B. Spezialmaschinenbau für die Automobilzulieferer-Industrie..." id="ch"></textarea></div>
-          <div class="fn"><button class="bb" onclick="ps(1)">Zurück</button><button class="bn" onclick="ns(3)">Weiter zu Schritt 3 <i data-lucide="arrow-right" style="width:18px;height:18px"></i></button></div>
+          <div class="fg"><label>Haben Sie ein System zur Neukundengewinnung? *</label><select id="nk"><option value="" disabled selected>Bitte wählen...</option><option>Ja und es funktioniert</option><option>Ja, aber es funktioniert nicht</option><option>Nein, noch nicht</option></select></div>
+          <div class="fg"><label>Ist Ihr Umsatz aktuell planbar? *</label><select id="up"><option value="" disabled selected>Bitte wählen...</option><option>Ja, Umsatz läuft stabil</option><option>Teilweise, schwankt stark</option><option>Nein, komplett vom Zufall abhängig</option></select></div>
+          <div class="fn"><button class="bb" onclick="ps(1)">Zurück</button><button class="bn" onclick="ns(3)">Absenden & Termin wählen <i data-lucide="arrow-right" style="width:18px;height:18px"></i></button></div>
         </div>
-        <!-- Step 3 -->
+        <!-- Step 3: Calendly -->
         <div class="step" id="step3">
-          <div class="st">3. Kurze Qualifizierung</div>
-          <div class="sd">Bitte bestätigen Sie folgende Voraussetzung.</div>
-          <div class="fg">
-            <label>Sind Sie bereit, in ein digitales System zu investieren, um planbar Neukunden zu gewinnen?</label>
-            <div class="rg">
-              <div class="ro" onclick="sr(this)"><div class="rd"></div>Ja, wir wollen wachsen und suchen eine Profilösung.</div>
-              <div class="ro" onclick="sr(this)"><div class="rd"></div>Ich möchte mich erst einmal unverbindlich informieren.</div>
-              <div class="ro" onclick="sr(this)"><div class="rd"></div>Nein, wir haben aktuell genug Kunden/keine Kapazitäten.</div>
-            </div>
-          </div>
-          <div class="fn"><button class="bb" onclick="ps(2)">Zurück</button><button class="bn" onclick="ns(4)">Termin auswählen <i data-lucide="arrow-right" style="width:18px;height:18px"></i></button></div>
-        </div>
-        <!-- Step 4 -->
-        <div class="step" id="step4">
-          <div class="st">4. Erstgespräch vereinbaren</div>
+          <div class="st">3. Erstgespräch vereinbaren</div>
           <div class="sd">Wählen Sie jetzt einen passenden Termin für das kostenlose Erstgespräch.</div>
           <div class="cal-wrap"><iframe id="calF" src="about:blank" loading="lazy"></iframe></div>
-          <div class="fn" style="margin-top:20px"><button class="bb" onclick="ps(3)">Zurück zu den Daten</button><div></div></div>
+          <div class="fn" style="margin-top:20px"><button class="bb" onclick="ps(2)">Zurück zu den Daten</button><div></div></div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -979,39 +906,71 @@ if (inputPh) {
   });
 }
 
-// Modal Logic
-function openModal() {
-  document.getElementById('formModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  document.getElementById('formModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
 let cur=1;
-function up(){for(let i=1;i<=4;i++){const c=document.getElementById('pc'+i);c.classList.remove('active','done');if(i<cur)c.classList.add('done');if(i===cur)c.classList.add('active');}for(let i=1;i<=3;i++){document.getElementById('pl'+i).classList.toggle('active',i<cur);}}
+function up(){
+  for(let i=1;i<=3;i++){
+    const c=document.getElementById('pc'+i);
+    c.classList.remove('active','done');
+    if(i<cur)c.classList.add('done');
+    if(i===cur)c.classList.add('active');
+  }
+  for(let i=1;i<=2;i++){
+    document.getElementById('pl'+i).classList.toggle('active',i<cur);
+  }
+}
 function ss(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');lucide.createIcons();}
 function v(id){return document.getElementById(id)?.value?.trim()||'';}
 function getPhone(){return iti ? iti.getNumber() : v('ph');}
 function sh(){const b=document.querySelector('.step.active .bn');if(!b)return;b.style.animation='shake 0.4s';setTimeout(()=>b.style.animation='',400);}
+
+function scrollToForm(){
+  const el=document.getElementById('formular');
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function sendWebhook(url, data){
+  try {
+    await fetch(url, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(data)
+    });
+  } catch(e){ console.error('Webhook error:', e); }
+}
+
 function ns(n){
-  // WICHTIG: Hier wurde !getPhone() durch !v('ph') ersetzt, damit es nicht blockiert!
-  if(cur===1&&(!v('fn')||!v('ln')||!v('em')||!v('ph'))){sh();return;}
-  if(cur===2&&!v('co')){sh();return;}
-  if(cur===3){
-    if(!document.querySelector('.ro.sel')){sh();return;}
+  if(cur===1){
+    if(!v('fn')||!v('ln')||!v('em')||!v('ph')){sh();return;}
+    // Send Step 1 data to webhook
+    sendWebhook('https://hook.eu1.make.com/j25ytqe1arhv1zifraw1rqbg5t4j4h9i', {
+      vorname: v('fn'),
+      nachname: v('ln'),
+      email: v('em'),
+      telefon: getPhone()
+    });
+  }
+  if(cur===2){
+    if(!v('co')||!v('nk')||!v('up')){sh();return;}
+    // Send Step 1 + Step 2 data to webhook
     const base='https://calendly.com/as-marketing-allgaeu/erstgespraech';
     const p=new URLSearchParams({hide_gdpr_banner:'1',name:v('fn')+' '+v('ln'),email:v('em'),a1:getPhone(),a2:v('co')});
     document.getElementById('calF').src=base+'?'+p.toString();
+    sendWebhook('https://hook.eu1.make.com/hrt921fju8vwgl1rplev7d4o7fo29gx6', {
+      vorname: v('fn'),
+      nachname: v('ln'),
+      email: v('em'),
+      telefon: getPhone(),
+      unternehmen: v('co'),
+      neukundengewinnung: v('nk'),
+      umsatz_planbar: v('up')
+    });
   }
   cur=n;up();ss(n);
-  // Scroll pop-up back to top on step change
-  document.getElementById('formModal').scrollTo({top: 0, behavior:'smooth'});
+  scrollToForm();
 }
 function ps(n){
   cur=n;up();ss(n);
-  document.getElementById('formModal').scrollTo({top: 0, behavior:'smooth'});
+  scrollToForm();
 }
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}'}));
 </script>
