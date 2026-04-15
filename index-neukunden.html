@@ -971,16 +971,26 @@ async function sendWebhook(url, data){
   } catch(e){ console.error('Webhook error:', e); }
 }
 
+// Capture UTM parameters from URL
+var urlParams = new URLSearchParams(window.location.search);
+var utmData = {
+  utm_source: urlParams.get('utm_source') || '',
+  utm_medium: urlParams.get('utm_medium') || '',
+  utm_campaign: urlParams.get('utm_campaign') || '',
+  utm_term: urlParams.get('utm_term') || '',
+  utm_content: urlParams.get('utm_content') || ''
+};
+
 function ns(n){
   if(cur===1){
     if(!v('fn')||!v('ln')||!v('em')||!isPhoneValid()){sh();return;}
     // Send Step 1 data to webhook
-    sendWebhook('https://hook.eu1.make.com/j25ytqe1arhv1zifraw1rqbg5t4j4h9i', {
+    sendWebhook('https://hook.eu1.make.com/j25ytqe1arhv1zifraw1rqbg5t4j4h9i', Object.assign({
       vorname: v('fn'),
       nachname: v('ln'),
       email: v('em'),
       telefon: getPhone()
-    });
+    }, utmData));
     // Fire Meta Pixel Lead event
     if(typeof fbq==='function') fbq('track','Lead');
   }
@@ -990,7 +1000,7 @@ function ns(n){
     const base='https://calendly.com/as-marketing-allgaeu/erstgespraech-website';
     const p=new URLSearchParams({embed_domain:'as-marketing-allgaeu.de',embed_type:'Inline',hide_gdpr_banner:'1',primary_color:'e52428',name:v('fn')+' '+v('ln'),email:v('em'),a1:getPhone(),a2:v('co')});
     document.getElementById('calF').src=base+'?'+p.toString();
-    sendWebhook('https://hook.eu1.make.com/hrt921fju8vwgl1rplev7d4o7fo29gx6', {
+    sendWebhook('https://hook.eu1.make.com/hrt921fju8vwgl1rplev7d4o7fo29gx6', Object.assign({
       vorname: v('fn'),
       nachname: v('ln'),
       email: v('em'),
@@ -998,7 +1008,7 @@ function ns(n){
       unternehmen: v('co'),
       neukundengewinnung: v('nk'),
       umsatz_planbar: v('up')
-    });
+    }, utmData));
   }
   cur=n;up();ss(n);
   scrollToForm();
